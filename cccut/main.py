@@ -20,7 +20,7 @@ def main(
         _version_callback()
         return typer.Exit()
     if fields:
-        field_indices = [int(i) - 1 for i in fields]
+        field_indices = [int(i) - 1 for i in fields if i not in (" ", ",")]
         for line in file:
             parts = line.strip().split(delimiter)
             selected_parts = [parts[i] for i in field_indices if i < len(parts)]
