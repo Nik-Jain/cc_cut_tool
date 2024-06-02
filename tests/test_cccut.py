@@ -21,3 +21,7 @@ def test_field_option(field_option, field_range, file_name, expected_result):
 def test_delimiter_option(field_option, field_range, delimiter_option, delimiter, file_name, expected_result):
     result = os.popen(' '.join(['cccut', field_option, field_range, delimiter_option, delimiter, file_name, '|', 'head'])).read()
     assert expected_result == result
+
+def test_std_input_read():
+    result = os.popen(' '.join(['tail', '-n5', 'fourchords.csv', '|', 'cccut', '-d,', '-f"1 2"'])).read()
+    assert result == '"Young Volcanoes"\tFall Out Boy\n"You Found Me"\tThe Fray\n"You\'ll Think Of Me"\tKeith Urban\n"You\'re Not Sorry"\tTaylor Swift\n"Zombie"\tThe Cranberries\n'
